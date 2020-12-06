@@ -6,7 +6,7 @@ import os
 import time 
 import random
 import pickle 
-from random import randint
+import re
 
 world_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
@@ -60,7 +60,7 @@ def save():
 
     print('Game Saved.')
 
-    townMenu()
+    townMenu(option)
 
 ##### LOAD GAME FUNCTION #####
 def resume():
@@ -81,14 +81,14 @@ def resume():
     player.hp = overwrite['HP']
     player.locationTag = overwrite['locationtag']
 
-    townMenu() 
+    townMenu(option) 
 
 ##### REST FUNCTION #####
-def rest():
+def rest(option):
     player.hp = 20
-    player.day = player.day + 1
+    player.day += 1
     print('You are Fully Healed')
-    townMenu()
+    townMenu(option)
 
 #-------- Map --------#
 
@@ -173,6 +173,9 @@ def townMenu(option):
     elif option == 3: 
         # Exits the game
         sys.exit()
+    else: 
+        print("Unknown option, please select 1-3.")
+        
 
     townMenu_selection(option)
 
@@ -220,8 +223,7 @@ def townMenu_selection(option):
         print("do smth")
         townMenu(option)
     elif action == '4':  # Function to rest
-        print("You are fully healed")
-        townMenu(option)
+        rest(option)
     elif action == '5':  # Function to save
         print("Game saved.")
         townMenu(option)
