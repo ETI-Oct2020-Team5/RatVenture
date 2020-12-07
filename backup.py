@@ -6,7 +6,10 @@ import os
 import time 
 import random
 import pickle 
-from random import randint
+import re
+
+# MMOption = Main Menu Option
+# TMOption = Town Menu Option
 
 world_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
@@ -69,24 +72,24 @@ def resume():
     overwrite = pickle.load(fileObject)
     fileObject.close()   
 
-    player.name = overwrite['Name'] 
-    player.positionY = overwrite['positionY']
-    player.positionX = overwrite['positionX']
-    player.damage = overwrite['Damage']
-    player.minDamage = overwrite['minDamage']
-    player.maxDamage = overwrite['maxDamage']
-    player.defence = overwrite['Defence']
-    player.day = overwrite['Day']
-    player.location = overwrite['location']
-    player.hp = overwrite['HP']
-    player.locationTag = overwrite['locationtag']
+    player.name = overwrite[player.name]
+    player.positionY = overwrite[player.positionY]
+    player.positionX = overwrite[player.positionX]
+    player.damage = overwrite[player.damage]
+    player.minDamage = overwrite[player.minDamage]
+    player.maxDamage = overwrite[player.maxDamage]
+    player.defence = overwrite[player.defence]
+    player.day = overwrite[player.day]
+    player.location = overwrite[player.location]
+    player.hp = overwrite[player.hp]
+    player.locationTag = overwrite[player.locationTag]
 
     townMenu() 
 
 ##### REST FUNCTION #####
-def rest():
+def rest(option):
     player.hp = 20
-    player.day = player.day + 1
+    player.day += 1
     print('You are Fully Healed')
     townMenu()
 
@@ -140,12 +143,16 @@ def mainMenu():
 
 def mainMenu_selection():
     option = int(input("Enter your option: "))
+    acceptable_options = [1,2,3]
+    while option not in acceptable_options:
+        print("Unknown option, please select 1-3.")
+        option = int(input("Enter your option: "))
     if option == 1:
         # Display the town menu
         townMenu()
     elif option == 2:
         # Loads the game
-        print('do smth')
+        resume()
     elif option == 3: 
         # Exits the game
         sys.exit()
@@ -180,20 +187,14 @@ def townMenu_selection():
         print("do smth")
         townMenu()
     elif action == '4':  # Function to rest
-        print("You are fully healed")
+        rest()
         townMenu()
     elif action == '5':  # Function to save
-        print("Game saved.")
+        save()
         townMenu()
     elif action == '6': # Function to exit
         sys.exit()
 
-
-    
-
-### GAME FUNCTIONALITY ### 
-def start_game():
-    return
 
 # Program starts here
 mainMenu()
