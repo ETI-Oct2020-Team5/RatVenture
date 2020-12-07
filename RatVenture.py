@@ -66,6 +66,7 @@ def viewChar(TM_Option):
 
 #-------- Move --------#
 
+<<<<<<< HEAD
 # Update Player's Location 
 # def updateLocation():
 #     for y in range(8):
@@ -146,6 +147,9 @@ def viewChar(TM_Option):
                     
 #                     elif world_map[y][x] == 'K':
 #                         player.locationTag = 'K'
+=======
+    townMenu(option)
+>>>>>>> d95fbb0b8b8b0987df729230a8286ab70cb7e43a
 
 #                     elif world_map[y][x] == ' ':
 #                         player.locationTag = ' '
@@ -198,13 +202,53 @@ def resume():
     player.hp = overwrite[player.hp]
     player.locationTag = overwrite[player.locationTag]
 
-    townMenu() 
+    townMenu(option) 
 
+<<<<<<< HEAD
 #-------- Exit --------#
 # Function to exit game
 def exit(TM_Option):
     if TM_Option == '6':
         sys.exit()
+=======
+##### REST FUNCTION #####
+def rest(option):
+    player.hp = 20
+    player.day += 1
+    print('You are Fully Healed')
+    townMenu(option)
+
+#-------- Map --------#
+
+# def map():
+#     row = ''
+#     for y in range(8):
+#         print('+---+---+---+---+---+---+---+---+')
+#         for x in range(8):
+#             if player.positionX == x and player.positionY == y:
+#                 if world_map[y][x] == ' ':
+#                     row = row + '| H' + ' '
+#                 else: 
+#                     row = row + '|H/' + str(world_map[y][x]) + ''
+
+#                 if world_map[y][x] == 'T':
+#                     player.locationTag = 'T'
+                
+#                 elif world_map[y][x] == 'K':
+#                     player.locationTag = 'K'
+
+#                 elif world_map[y][x] == ' ':
+#                     player.locationTag = ' '
+#             else: 
+#                 row = row + '| ' + str(world_map[x][y]) + ' '
+#         print(row + '|')
+#         row = ''
+    
+#     print('+---+---+---+---+---+---+---+---+')
+#     print()
+
+#     townMenu(a)
+>>>>>>> d95fbb0b8b8b0987df729230a8286ab70cb7e43a
 
 ##### GAME INTERACTIVITY #####
 
@@ -253,7 +297,28 @@ def townMenu():
     print("[5] Save Game")
     print("[6] Exit Game")
 
+<<<<<<< HEAD
     TM_Option = input("Enter your option: ")
+=======
+    if option == 1:
+        print("\nDay {}: You are in town.".format(player.day))
+        print("[1] View Character")
+        print("[2] View Map")
+        print("[3] Move")
+        print("[4] Rest")
+        print("[5] Save Game")
+        print("[6] Exit Game")
+        # Display the town menu
+    elif option == 2:
+        # Loads the game
+        print('do smth')
+    elif option == 3: 
+        # Exits the game
+        sys.exit()
+    else: 
+        print("Unknown option, please select 1-3.")
+        
+>>>>>>> d95fbb0b8b8b0987df729230a8286ab70cb7e43a
 
     townMenu_selection(TM_Option)
 
@@ -281,10 +346,25 @@ def townMenu_selection(TM_Option):
         exit(TM_Option)
     
 
+<<<<<<< HEAD
 # Program starts here
 mainMenu()
   
         
+=======
+        townMenu(option)
+        #map()    
+    elif action == '3': # Function to move
+        print("do smth")
+        townMenu(option)
+    elif action == '4':  # Function to rest
+        rest(option)
+    elif action == '5':  # Function to save
+        print("Game saved.")
+        townMenu(option)
+    elif action == '6': # Function to exit
+        sys.exit()
+>>>>>>> d95fbb0b8b8b0987df729230a8286ab70cb7e43a
 
 
     

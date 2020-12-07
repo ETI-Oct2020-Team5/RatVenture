@@ -8,8 +8,8 @@ import random
 import pickle 
 import re
 
-# MMOption = Main Menu Option
-# TMOption = Town Menu Option
+# MM_Option = Main Menu Option
+# TM_Option = Town Menu Option
 
 world_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
@@ -55,17 +55,130 @@ class Rat(object):
     
 rat = Rat()
 
-##### SAVE GAME FUNCTION ##### 
-def save():
-    outfile = open('player.txt','wb')
-    pickle.dump(player, outfile)
-    outfile.close()
+#-------- View Character --------#
+# View Character Function
+def viewChar(TM_Option):
+    if TM_Option == '1':
+        print()
+        print(player.name, "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp))
+        townMenu()
+
+#-------- Move --------#
+
+# Update Player's Location 
+def updateLocation():
+    for y in range(8):
+        for x in range(8):
+            if player.positionX == x and player.positionY == y:
+                if world_map[y][x] == 'T':
+                    player.locationTag == 'T'
+                elif world_map[y][x] == 'K':
+                    player.locationTag == 'K'
+                elif world_map[y][x] == ' ':
+                    player.locationTag == ' '
+
+# Move Function
+def move(TM_Option):
+    if TM_Option == '3':
+        map('2') # Call function to print map 
+        print('W = up; A = left; S = down; D = right')
+        print()
+        movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
+        movementInput = movementInput.upper()  
+        player.day += 1 # Increments Day by 1
+
+        numList = [0,1,2,3,4,5,6,7]
+        if movementInput == 'W':
+            player.positionY -= 1
+            if player.positionY < 0 and player.positionX in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
+
+        if movementInput == 'A':
+            player.positionX += 1
+            if player.positionX < 0 and player.positionY in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
+
+        if movementInput == 'S':
+            player.positionY += 1
+            if player.positionY > 7 and player.positionX in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
+
+        if movementInput == 'D':
+            player.positionX += 1
+            if player.positionY > 7 and player.positionX in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
+
+    townMenu()
+
+#-------- View Map --------#
+# Map Function 
+def map(TM_Option):
+    if TM_Option == '2':
+        row = ''
+        for y in range(8):
+            print('+---+---+---+---+---+---+---+---+')
+            for x in range(8):
+                if player.positionX == x and player.positionY == y:
+                    if world_map[y][x] == ' ':
+                        row = row + '| H' + ' '
+                    else: 
+                        row = row + '|H/' + str(world_map[y][x]) + ''
+
+                    if world_map[y][x] == 'T':
+                        player.locationTag = 'T'
+                    
+                    elif world_map[y][x] == 'K':
+                        player.locationTag = 'K'
+
+                    elif world_map[y][x] == ' ':
+                        player.locationTag = ' '
+                else: 
+                    row = row + '| ' + str(world_map[x][y]) + ' '
+            print(row + '|')
+            row = ''
+        
+        print('+---+---+---+---+---+---+---+---+')
+        print()
+
+#-------- Rest --------#
+# Function to allow player to rest
+def rest(TM_Option):
+    if TM_Option == '4':
+        player.hp = 20
+        player.day += 1
+        print('You are Fully Healed')
+        townMenu()
+
+#-------- Save --------#
+# Function to save game
+def save(TM_Option):
+    if TM_Option == '5':
+        outfile = open('player.txt','wb')
+        pickle.dump(player, outfile)
+        outfile.close()
 
     print('Game Saved.')
 
     townMenu()
 
-##### LOAD GAME FUNCTION #####
+#-------- Load --------#
+# Function to resume game state
 def resume():
     global player
     fileObject = open('player.txt','rb') 
@@ -86,43 +199,11 @@ def resume():
 
     townMenu() 
 
-##### REST FUNCTION #####
-def rest(option):
-    player.hp = 20
-    player.day += 1
-    print('You are Fully Healed')
-    townMenu()
-
-#-------- Map --------#
-
-def map():
-    row = ''
-    for y in range(8):
-        print('+---+---+---+---+---+---+---+---+')
-        for x in range(8):
-            if player.positionX == x and player.positionY == y:
-                if world_map[y][x] == ' ':
-                    row = row + '| H' + ' '
-                else: 
-                    row = row + '|H/' + str(world_map[y][x]) + ''
-
-                if world_map[y][x] == 'T':
-                    player.locationTag = 'T'
-                
-                elif world_map[y][x] == 'K':
-                    player.locationTag = 'K'
-
-                elif world_map[y][x] == ' ':
-                    player.locationTag = ' '
-            else: 
-                row = row + '| ' + str(world_map[x][y]) + ' '
-        print(row + '|')
-        row = ''
-    
-    print('+---+---+---+---+---+---+---+---+')
-    print()
-
-    townMenu()
+#-------- Exit --------#
+# Function to exit game
+def exit(TM_Option):
+    if TM_Option == '6':
+        sys.exit()
 
 ##### GAME INTERACTIVITY #####
 
@@ -138,24 +219,26 @@ def mainMenu():
     print("[2] Resume")
     print("[3] Exit")
 
-    # Prompt for user input 
-    mainMenu_selection()
+    MM_Option = int(input("Enter your option: "))
 
-def mainMenu_selection():
-    option = int(input("Enter your option: "))
+    # Prompt for user input 
+    mainMenu_selection(MM_Option)
+
+def mainMenu_selection(MM_Option):
     acceptable_options = [1,2,3]
-    while option not in acceptable_options:
+    while MM_Option not in acceptable_options:
         print("Unknown option, please select 1-3.")
-        option = int(input("Enter your option: "))
-    if option == 1:
+        MM_Option = int(input("Enter your option: "))
+    if MM_Option == 1:
         # Display the town menu
         townMenu()
-    elif option == 2:
+    elif MM_Option == 2:
         # Loads the game
         resume()
-    elif option == 3: 
+    elif MM_Option == 3: 
         # Exits the game
         sys.exit()
+
 
 #-------- Town Menu --------#
 
@@ -168,33 +251,31 @@ def townMenu():
     print("[4] Rest")
     print("[5] Save Game")
     print("[6] Exit Game")
-    townMenu_selection()
+
+    TM_Option = input("Enter your option: ")
+
+    townMenu_selection(TM_Option)
 
         
-def townMenu_selection():
-
-    action = input("Enter your option: ")
+def townMenu_selection(TM_Option):
     acceptable_actions = ['1', '2', '3', '4', '5', '6']
-    while action not in acceptable_actions:
+    while TM_Option not in acceptable_actions:
         print("Unknown option, please select 1-6.")
-        action = input("Enter your option: ")
-    if action == '1':
-        print(player.name, "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp))
-        townMenu()
-    elif action == '2': # Function to display map
-        map()    
-    elif action == '3': # Function to move
-        print("do smth")
-        townMenu()
-    elif action == '4':  # Function to rest
-        rest()
-        townMenu()
-    elif action == '5':  # Function to save
-        save()
-        townMenu()
-    elif action == '6': # Function to exit
-        sys.exit()
-
+        TM_Option = input("Enter your option: ")
+    if TM_Option == '1':
+        viewChar(TM_Option)
+    elif TM_Option == '2': # Function to display map
+        map(TM_Option)  
+        townMenu()  
+    elif TM_Option == '3': # Function to move
+        move(TM_Option)
+    elif TM_Option == '4':  # Function to rest
+        rest(TM_Option)
+    elif TM_Option == '5':  # Function to save
+        save(TM_Option)
+    elif TM_Option == '6': # Function to exit
+        exit(TM_Option)
+    
 
 # Program starts here
 mainMenu()
