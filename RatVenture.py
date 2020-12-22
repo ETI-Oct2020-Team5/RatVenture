@@ -137,29 +137,36 @@ def mainMenu():
     print("[2] Resume")
     print("[3] Exit")
 
-    # Prompt for user input 
-    townMenu(mainMenu_selection())
+    # Prompt for user input and display appropriate menu
+    useroption = mainmenuuseroption()
+    townMenu(useroption)
 
-def useroption():
-    action = input("Enter your option: ")
-    acceptable_actions = ['1', '2', '3', '4', '5', '6']
+def townmenuuseroption():
+    # Get user input in Town Menu and validate
+    action = int(input("Enter your option: "))
+    acceptable_actions = [1, 2, 3, 4, 5, 6]
     while action not in acceptable_actions:
         print("Unknown option, please select 1-6.")
-        action = input("Enter your option: ")
+        action = int(input("Enter your option: "))
     else:
         pass
+    # Return user input
     return action
-def useroptiontownmenu():
-    action = input("Enter your option: ")
-    acceptable_actions=['1','2','3']
+
+def mainmenuuseroption():
+    # Get user input in Main Menu and validate
+    action = int(input("Enter your option: "))
+    acceptable_actions=[1,2,3]
     while action not in acceptable_actions:
-        print("Unknown option, please select 1-6.")
-        action = input("Enter your option: ")
+        print("Unknown option, please select 1-3.")
+        action = int(input("Enter your option: "))
     else:
         pass
+    # Return user input
     return action
 
 def herostats():
+    # Display hero stats and return hero stats
     stats = player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
     print(stats)
     return stats
@@ -205,7 +212,7 @@ def display_map():
         row = ''
         
     print('+---+---+---+---+---+---+---+---+')
-    townMenu(1)
+    
     
 
     #map()    
@@ -213,10 +220,10 @@ def display_map():
 
 #-------- Town Menu --------#
 
-def townMenu(option):
+def townMenu(MMoption):
     ### add incremental day ####
-
-    if option == 1:
+    
+    if MMoption == 1:
         print("\nDay {}: You are in town.".format(player.day))
         print("[1] View Character")
         print("[2] View Map")
@@ -225,10 +232,10 @@ def townMenu(option):
         print("[5] Save Game")
         print("[6] Exit Game")
         # Display the town menu
-    elif option == 2:
+    elif MMoption == 2:
         # Loads the game
         print('do smth')
-    elif option == 3: 
+    elif MMoption == 3: 
         # Exits the game
         sys.exit()
     # option = useroptiontownmenu()
@@ -236,26 +243,27 @@ def townMenu(option):
 
 
 def townMenu_selection():
-    action = useroption()
+    TMoption = townmenuuseroption()
     # action = input("Enter your option: ")
-    acceptable_actions = ['1', '2', '3', '4', '5', '6']
-    while action not in acceptable_actions:
+    acceptable_actions = [1, 2, 3, 4, 5, 6]
+    while TMoption not in acceptable_actions:
         print("Unknown option, please select 1-6.")
     #   action = input("Enter your option: ")
-        action = useroption()
-    if action == '1':
-        townMenu_selection1()
+        TMoption = townmenuuseroption()
+    if TMoption == 1:
+        herostats()
         townMenu(1)
-    elif action == '2':
+    elif TMoption == 2:
         display_map()
         townMenu(1)        
-    elif action == '3':
+    elif TMoption == 3:
         print("do smth")
-    elif action == '4':
+    elif TMoption == 4:
         rest()
-    elif action == '5':
+    elif TMoption == 5:
         print("do smth")
-    elif action == '6':
+    elif TMoption == 6:
+        print ("Goodbye")
         sys.exit
         
         
@@ -301,9 +309,7 @@ def townMenu_selection():
     # elif action == '6': # Function to exit
     #     sys.exit()
 
-def townMenu_selection1():
-    herostats()
-    return (player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp))
+
     
 
 ### GAME FUNCTIONALITY ### 
