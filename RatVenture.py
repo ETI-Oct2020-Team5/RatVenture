@@ -409,5 +409,5 @@ def townMenu_selection(TM_Option):
 def start_game():
     return
 
-# Program starts here
-mainMenu()
+# # Program starts here
+# mainMenu()
