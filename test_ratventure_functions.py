@@ -3,7 +3,11 @@ from RatVenture import *
 
 def test_view_stats():
    """This is to test if the Hero Stats gets displayed and if the statistics is correct, dynamic and can respond to changes when the values change"""
-   value = townMenu_selection1()
+
+   value = herostats()
+
+   #value = townMenu_selection1()
+
    assert value == player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
 
 def test_rest_function():
