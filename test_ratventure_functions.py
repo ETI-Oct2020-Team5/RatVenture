@@ -6,7 +6,7 @@ def test_view_stats():
 
    value = herostats()
 
-   value = townMenu_selection1()
+   #value = townMenu_selection1()
 
    assert value == player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
 
