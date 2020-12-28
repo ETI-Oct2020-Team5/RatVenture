@@ -62,7 +62,7 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    townMenu(1)
+    #townMenu(1)
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -312,4 +312,4 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
