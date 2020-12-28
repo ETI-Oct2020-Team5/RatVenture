@@ -53,14 +53,7 @@ class Rat(object):
 rat = Rat()
 
 ##### SAVE GAME FUNCTION ##### 
-def save():
-    outfile = open('player.txt','wb')
-    pickle.dump(player, outfile)
-    outfile.close()
 
-    print('Game Saved.')
-
-    townMenu(1)
 
 
 ##### REST FUNCTION #####
@@ -69,7 +62,7 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    #townMenu(1)
+    townMenu(1)
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -153,6 +146,32 @@ def herostats():
 
 
 
+def useroption():
+    action = input("Enter your option: ")
+    acceptable_actions = ['1', '2', '3', '4', '5', '6']
+    while action not in acceptable_actions:
+        print("Unknown option, please select 1-6.")
+        action = input("Enter your option: ")
+    else:
+        pass
+    return action
+def useroptiontownmenu():
+    action = input("Enter your option: ")
+    acceptable_actions=['1','2','3']
+    while action not in acceptable_actions:
+        print("Unknown option, please select 1-6.")
+        action = input("Enter your option: ")
+    else:
+        pass
+    return action
+
+def herostats():
+    stats = player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
+    print(stats)
+    return stats
+
+
+
 def mainMenu_selection():
     option = int(input("Enter your option: "))
     # if option == 1:
@@ -225,7 +244,7 @@ def townMenu(MMoption):
 def townMenu_selection():
     TMoption = townmenuuseroption()
     # action = input("Enter your option: ")
-    acceptable_actions = ['1', '2', '3', '4', '5', '6']
+    acceptable_actions = [1, 2, 3, 4, 5, 6]
     while TMoption not in acceptable_actions:
         print("Unknown option, please select 1-6.")
     #   action = input("Enter your option: ")
@@ -289,7 +308,9 @@ def townMenu_selection():
     # elif action == '6': # Function to exit
     #     sys.exit()
 
-
+def townMenu_selection1():
+    herostats()
+    return (player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp))
     
 
 ### GAME FUNCTIONALITY ### 
@@ -297,4 +318,4 @@ def start_game():
     return
 
 # # Program starts here
-#mainMenu()
+mainMenu()
