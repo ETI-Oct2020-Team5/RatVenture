@@ -6,14 +6,7 @@ import os
 import time 
 import random
 import pickle 
-import re
 from random import randint
-
-
-# MM_Option = Main Menu Option
-# TM_Option = Town Menu Option
-
-# Map Layout    
 
 world_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
@@ -59,7 +52,6 @@ class Rat(object):
     
 rat = Rat()
 
-
 ##### SAVE GAME FUNCTION ##### 
 def save():
     outfile = open('player.txt','wb')
@@ -97,7 +89,7 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    townMenu(1)
+    #townMenu(1)
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -131,32 +123,6 @@ def rest():
 
 #     townMenu(a)
 
-#-------- View Character --------#
-# View Character Function
-def viewChar(TM_Option):
-    if TM_Option == '1':
-        print()
-        print(player.name, "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp))
-        townMenu()
-
-
-#-------- Rest --------#
-# Function to allow player to rest
-def rest(TM_Option):
-    if TM_Option == '4':
-        player.hp = 20
-        player.day += 1
-        print('You are Fully Healed')
-        townMenu()
-
-
-#-------- Exit --------#
-# Function to exit game
-def exit(TM_Option):
-    if TM_Option == '6':
-        sys.exit()
-
-
 ##### GAME INTERACTIVITY #####
 
 #-------- Main Menu --------#
@@ -170,7 +136,6 @@ def mainMenu():
     print("[1] New Game")
     print("[2] Resume")
     print("[3] Exit")
-
 
     # Prompt for user input and display appropriate menu
     useroption = mainmenuuseroption()
@@ -252,30 +217,8 @@ def display_map():
 
     #map()    
 
-    MM_Option = int(input("Enter your option: "))
-
-    # Prompt for user input 
-    mainMenu_selection(MM_Option)
-
-def mainMenu_selection(MM_Option):
-    acceptable_options = [1,2,3]
-    while MM_Option not in acceptable_options:
-        print("Unknown option, please select 1-3.")
-        MM_Option = int(input("Enter your option: "))
-    if MM_Option == 1:
-        # Display the town menu
-        townMenu()
-    elif MM_Option == 2:
-        # Loads the game
-        resume()
-    elif MM_Option == 3: 
-        # Exits the game
-        sys.exit()
-
-
 
 #-------- Town Menu --------#
-
 
 def townMenu(MMoption):
     ### add incremental day ####
@@ -366,48 +309,12 @@ def townMenu_selection():
     # elif action == '6': # Function to exit
     #     sys.exit()
 
-def townMenu():
-    print("\nDay {}: You are in town.".format(player.day))
-    print("[1] View Character")
-    print("[2] View Map")
-    print("[3] Move")
-    print("[4] Rest")
-    print("[5] Save Game")
-    print("[6] Exit Game")
+
     
-    TM_Option = input("Enter your option: ")
-
-
-    townMenu_selection(TM_Option)
-
-        
-def townMenu_selection(TM_Option):
-    acceptable_actions = ['1', '2', '3', '4', '5', '6']
-    while TM_Option not in acceptable_actions:
-        print("Unknown option, please select 1-6.")
-        TM_Option = input("Enter your option: ")
-    if TM_Option == '1':
-        viewChar(TM_Option)
-    elif TM_Option == '2': # Function to display map
-        # map(TM_Option)  
-        # townMenu()  
-        print()
-    elif TM_Option == '3': # Function to move
-        #move(TM_Option)
-        print()
-    elif TM_Option == '4':  # Function to rest
-        rest(TM_Option)
-    elif TM_Option == '5':  # Function to save
-        #save(TM_Option)
-        print()
-    elif TM_Option == '6': # Function to exit
-        exit(TM_Option)
-    
-
 
 ### GAME FUNCTIONALITY ### 
 def start_game():
     return
 
 # # Program starts here
-# mainMenu()
+#mainMenu()
