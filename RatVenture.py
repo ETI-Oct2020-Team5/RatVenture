@@ -62,7 +62,7 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    townMenu(1)
+    
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -165,10 +165,6 @@ def useroptiontownmenu():
         pass
     return action
 
-def herostats():
-    stats = player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
-    print(stats)
-    return stats
 
 
 
@@ -259,6 +255,7 @@ def townMenu_selection():
         print("do smth")
     elif TMoption == 4:
         rest()
+        townMenu(1)
     elif TMoption == 5:
         print("do smth")
     elif TMoption == 6:
@@ -318,4 +315,4 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
