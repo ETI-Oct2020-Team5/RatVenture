@@ -53,14 +53,7 @@ class Rat(object):
 rat = Rat()
 
 ##### SAVE GAME FUNCTION ##### 
-def save():
-    outfile = open('player.txt','wb')
-    pickle.dump(player, outfile)
-    outfile.close()
 
-    print('Game Saved.')
-
-    townMenu(1)
 
 
 ##### REST FUNCTION #####
