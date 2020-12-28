@@ -62,26 +62,6 @@ def save():
 
     townMenu(1)
 
-##### LOAD GAME FUNCTION #####
-def resume():
-    global player
-    fileObject = open('player.txt','rb') 
-    overwrite = pickle.load(fileObject)
-    fileObject.close()   
-
-    player.name = overwrite['Name'] 
-    player.positionY = overwrite['positionY']
-    player.positionX = overwrite['positionX']
-    player.damage = overwrite['Damage']
-    player.minDamage = overwrite['minDamage']
-    player.maxDamage = overwrite['maxDamage']
-    player.defence = overwrite['Defence']
-    player.day = overwrite['Day']
-    player.location = overwrite['location']
-    player.hp = overwrite['HP']
-    player.locationTag = overwrite['locationtag']
-
-    townMenu(1) 
 
 ##### REST FUNCTION #####
 def rest():
@@ -245,7 +225,7 @@ def townMenu(MMoption):
 def townMenu_selection():
     TMoption = townmenuuseroption()
     # action = input("Enter your option: ")
-    acceptable_actions = [1, 2, 3, 4, 5, 6]
+    acceptable_actions = ['1', '2', '3', '4', '5', '6']
     while TMoption not in acceptable_actions:
         print("Unknown option, please select 1-6.")
     #   action = input("Enter your option: ")
