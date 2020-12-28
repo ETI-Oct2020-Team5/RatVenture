@@ -62,26 +62,6 @@ def save():
 
     townMenu(1)
 
-##### LOAD GAME FUNCTION #####
-def resume():
-    global player
-    fileObject = open('player.txt','rb') 
-    overwrite = pickle.load(fileObject)
-    fileObject.close()   
-
-    player.name = overwrite['Name'] 
-    player.positionY = overwrite['positionY']
-    player.positionX = overwrite['positionX']
-    player.damage = overwrite['Damage']
-    player.minDamage = overwrite['minDamage']
-    player.maxDamage = overwrite['maxDamage']
-    player.defence = overwrite['Defence']
-    player.day = overwrite['Day']
-    player.location = overwrite['location']
-    player.hp = overwrite['HP']
-    player.locationTag = overwrite['locationtag']
-
-    townMenu(1) 
 
 ##### REST FUNCTION #####
 def rest():
@@ -89,7 +69,7 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    townMenu(1)
+    #townMenu(1)
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -317,4 +297,4 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
