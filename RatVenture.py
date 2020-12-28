@@ -165,12 +165,6 @@ def useroptiontownmenu():
         pass
     return action
 
-def herostats():
-    stats = player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
-    print(stats)
-    return stats
-
-
 
 def mainMenu_selection():
     option = int(input("Enter your option: "))
