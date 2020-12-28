@@ -62,7 +62,8 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    
+
+
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -164,7 +165,6 @@ def useroptiontownmenu():
     else:
         pass
     return action
-
 
 
 
