@@ -6,8 +6,6 @@ import os
 import time 
 import random
 import pickle 
-#import xlsxwriter
-import pandas as pd
 import csv
 from random import randint
 
