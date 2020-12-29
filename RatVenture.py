@@ -102,8 +102,8 @@ def savegame():
     savedplayer.hp = player.hp
     savedplayer.day = player.day
 
-    dataList=[savedplayer.name,savedplayer.damage,savedplayer.defence,savedplayer.hp, savedplayer.day]
-    headerList=['Name','Damage','Defence','HP','Day']
+    dataList=[savedplayer.name,savedplayer.damage,savedplayer.defence,savedplayer.hp, savedplayer.day, "Yes"]
+    headerList=['Name','Damage','Defence','HP','Day', 'Saved']
 
     try:
         with open("saveddata.csv",'r') as infile:
@@ -154,10 +154,58 @@ def savegame():
             #return savedstats
             return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
 
-# def resumegame():
+
+def resumegame():
+    try:
+        with open("saveddata.csv",'r') as infile:
+                reader = csv.reader(infile, delimiter=",")
+                header =next(reader)
+                for row in reader:          
+                    if row[5] != "Yes":
+                        print("No saved data found, creating new one instead")
+                        dataList=["The Hero", "2-4", "1", "20","1","No"]
+                        headerList=['Name','Damage','Defence','HP','Day','Saved']
+                        with open('saveddata.csv','w',newline="") as csvfile:
+                            writer=csv.writer(csvfile)
+                            writer.writerow(headerList)
+                            writer.writerow(dataList)
+                            csvfile.close()
+                        resumeplayer.name == row[0]
+                        resumeplayer.damage ==row[1]
+                        resumeplayer.defence==row[2]
+                        resumeplayer.hp==row[3]
+                        resumeplayer.day==row[4]
+                        return(resumeplayer.name,resumeplayer.damage,resumeplayer.defence,resumeplayer.hp,resumeplayer.day)
+                    else:
+                        print("Saved data found, resuming game")
+                        break
+    except:
+        dataList=["The Hero", "2-4", "1", "20","1","No"]
+        headerList=['Name','Damage','Defence','HP','Day','Saved']
+        with open('saveddata.csv','w',newline="") as csvfile:
+            writer=csv.writer(csvfile)
+            writer.writerow(headerList)
+            writer.writerow(dataList)
+            csvfile.close()
+        print("No saved data file found, creating one now")
+        
+                        
+    
+    
 
 
 
+
+def exitgame():
+    dataList=["The Hero", "2-4", "1", "20","1","No"]
+    headerList=['Name','Damage','Defence','HP','Day','Saved']
+    with open('saveddata.csv','w',newline="") as csvfile:
+            writer=csv.writer(csvfile)
+            writer.writerow(headerList)
+            writer.writerow(dataList)
+            csvfile.close()
+    
+    sys.exit()
 
 ##### REST FUNCTION #####
 def rest():
@@ -244,7 +292,7 @@ def mainmenuuseroption():
 
 def herostats():
     # Display hero stats and return hero stats
-    stats = player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp)
+    stats = player.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(player.damage, player.defence, player.hp, player.day)
     print(stats)
     return stats
 
@@ -332,10 +380,11 @@ def townMenu(MMoption):
         # Display the town menu
     elif MMoption == 2:
         # Loads the game
-        print('do smth')
+        resumegame()
+        townMenu(1)
     elif MMoption == 3: 
         # Exits the game
-        sys.exit()
+        exitgame()
     # option = useroptiontownmenu()
     townMenu_selection()
 
@@ -363,8 +412,7 @@ def townMenu_selection():
         savegame()
         townMenu(1)
     elif TMoption == 6:
-        print ("Goodbye")
-        sys.exit
+        mainMenu()
         
         
         
@@ -419,5 +467,5 @@ def start_game():
     return
 
 # # Program starts here
-#mainMenu()
+mainMenu()
 
