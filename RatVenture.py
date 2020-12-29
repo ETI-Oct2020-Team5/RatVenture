@@ -6,6 +6,9 @@ import os
 import time 
 import random
 import pickle 
+#import xlsxwriter
+import pandas as pd
+import csv
 from random import randint
 
 world_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
@@ -39,6 +42,28 @@ class Player:  # Player starts game with these stats
 
 player = Player()
 
+#--------Saved Player Class --------#
+class SavedPlayer:  # Player starts game with these stats
+    def __init__(self):   # Defining parameters
+        self.name = 'SavedData'
+        self.damage = 'SavedData'
+        self.minDamage = 2
+        self.maxDamage = 4
+        self.defence = 'SavedData'
+        self.hp = 'SavedData'
+        self.day = 'SavedData'
+        self.positionX = 0
+        self.positionY = 0
+        self.location = 'You are in a Town'
+        self.locationTag = 'H'
+
+    def is_alive(self): 
+        return self.hp > 0
+
+savedplayer = SavedPlayer()
+
+
+
 #-------- Rat Class --------#
 class Rat(object): 
     def __init__(self):
@@ -52,7 +77,64 @@ class Rat(object):
     
 rat = Rat()
 
-##### SAVE GAME FUNCTION ##### 
+
+def savegame():
+    savedplayer.name = player.name
+    savedplayer.damage = player.damage
+    savedplayer.defence = player.defence
+    savedplayer.hp = player.hp
+    savedplayer.day = player.day
+
+    dataList=[savedplayer.name,savedplayer.damage,savedplayer.defence,savedplayer.hp, savedplayer.day]
+    headerList=['Name','Damage','Defence','HP','Day']
+
+    try:
+        with open("saveddata.csv",'r') as infile:
+            reader = csv.reader(infile, delimiter=",")
+            header =next(reader)
+            for row in reader:
+                playername=row[0]
+                playerdamage=row[1]
+                playerdefence=row[2]
+                playerhp=row[3]
+                if playername != null:
+                    
+                    with open('saveddata.csv','w',newline="") as csvfile:
+                        writer=csv.writer(csvfile)
+                        writer.writerow(headerList)
+                        writer.writerow(dataList)
+                        csvfile.close()
+                        #print("Game saved successfully")
+                        stats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+                        print(stats)
+                        return stats
+                        
+                    
+                elif playername == null:
+                    with open('saveddata.csv','w',newline="") as csvfile:
+                        writer=csv.writer(csvfile)
+                        writer.writerow(headerList)
+                        writer.writerow(dataList)
+                        csvfile.close()
+                        #print("Game saved successfully")
+                        stats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+                        print(stats)
+                        return stats
+                else:
+                    pass
+    except:
+        
+        with open('saveddata.csv','w',newline="") as csvfile:
+            writer=csv.writer(csvfile)
+            writer.writerow(headerList)
+            writer.writerow(dataList)
+            csvfile.close()
+            #print("Game saved successfully")
+            stats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+            print(stats)
+            return stats
+
+            
 
 
 
@@ -257,7 +339,8 @@ def townMenu_selection():
         rest()
         townMenu(1)
     elif TMoption == 5:
-        print("do smth")
+        savegame()
+        townMenu(1)
     elif TMoption == 6:
         print ("Goodbye")
         sys.exit
@@ -309,10 +392,11 @@ def townMenu_selection1():
     herostats()
     return (player.name + "\nDamage: {}\nDefence: {}\nHP: {}".format(player.damage, player.defence, player.hp))
     
-
+##### SAVE GAME FUNCTION ##### 
 ### GAME FUNCTIONALITY ### 
 def start_game():
     return
 
 # # Program starts here
 #mainMenu()
+
