@@ -6,6 +6,7 @@ import os
 import time 
 import random
 import pickle 
+
 import csv
 from random import randint
 
@@ -60,7 +61,25 @@ class SavedPlayer:  # Player starts game with these stats
 
 savedplayer = SavedPlayer()
 
+#--------Resumed Player Class --------#
+class ResumePlayer:  # Player starts game with these stats
+    def __init__(self):   # Defining parameters
+        self.name = 'ResumeData'
+        self.damage = 'ResumeData'
+        self.minDamage = 2
+        self.maxDamage = 4
+        self.defence = 'ResumeData'
+        self.hp = 'ResumeData'
+        self.day = 'ResumeData'
+        self.positionX = 0
+        self.positionY = 0
+        self.location = 'You are in a Town'
+        self.locationTag = 'H'
 
+    def is_alive(self): 
+        return self.hp > 0
+
+resumeplayer = ResumePlayer()
 
 #-------- Rat Class --------#
 class Rat(object): 
@@ -105,7 +124,8 @@ def savegame():
                         #print("Game saved successfully")
                         savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
                         print("\nGame saved. Character stats: \n" + savedstats)
-                        return savedstats
+                        #return savedstats
+                        return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
                         
                     
                 elif playername == null:
@@ -117,7 +137,8 @@ def savegame():
                         #print("Game saved successfully")
                         savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
                         print("\nGame saved. Character stats: \n" + savedstats)
-                        return savedstats
+                        #return savedstats
+                        return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
                 else:
                     pass
     except:
@@ -130,9 +151,11 @@ def savegame():
             #print("Game saved successfully")
             savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
             print("\nGame saved. Character stats: \n" + savedstats)
-            return savedstats
+            #return savedstats
+            return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
 
-            
+# def resumegame():
+
 
 
 
@@ -396,5 +419,5 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
 
