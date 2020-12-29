@@ -75,7 +75,7 @@ class Rat(object):
     
 rat = Rat()
 
-
+#-------Save Game-------#
 def savegame():
     savedplayer.name = player.name
     savedplayer.damage = player.damage
@@ -103,9 +103,9 @@ def savegame():
                         writer.writerow(dataList)
                         csvfile.close()
                         #print("Game saved successfully")
-                        stats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
-                        print(stats)
-                        return stats
+                        savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+                        print("\nGame saved. Character stats: \n" + savedstats)
+                        return savedstats
                         
                     
                 elif playername == null:
@@ -115,9 +115,9 @@ def savegame():
                         writer.writerow(dataList)
                         csvfile.close()
                         #print("Game saved successfully")
-                        stats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
-                        print(stats)
-                        return stats
+                        savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+                        print("\nGame saved. Character stats: \n" + savedstats)
+                        return savedstats
                 else:
                     pass
     except:
@@ -128,9 +128,9 @@ def savegame():
             writer.writerow(dataList)
             csvfile.close()
             #print("Game saved successfully")
-            stats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
-            print(stats)
-            return stats
+            savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+            print("\nGame saved. Character stats: \n" + savedstats)
+            return savedstats
 
             
 
@@ -396,5 +396,5 @@ def start_game():
     return
 
 # # Program starts here
-#mainMenu()
+mainMenu()
 

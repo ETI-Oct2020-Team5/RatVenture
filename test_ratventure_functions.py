@@ -18,4 +18,4 @@ def test_rest_function():
 def test_save_function():
        """This is to test if player data can be saved into excel file"""
        value = savegame()
-       assert value == savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+       assert value ==  savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
