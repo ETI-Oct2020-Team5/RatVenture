@@ -125,7 +125,8 @@ def savegame():
                         writer.writerow(headerList)
                         writer.writerow(dataList)
                         csvfile.close() #Closes csv file
-                        savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+                        savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, 
+                        savedplayer.defence, savedplayer.hp, savedplayer.day)
                         print("\nGame saved. Character stats: \n" + savedstats) #Success message printed
                         #Returns value for check with pytest
                         return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
@@ -137,7 +138,8 @@ def savegame():
                         writer.writerow(headerList)
                         writer.writerow(dataList)
                         csvfile.close() #Close csv file
-                        savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
+                        savedstats = savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, 
+                        savedplayer.day)
                         #Success message and stats printed
                         print("\nGame saved. Character stats: \n" + savedstats)
                         #Value returned for check with pytest"
