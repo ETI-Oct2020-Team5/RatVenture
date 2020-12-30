@@ -177,6 +177,7 @@ def resumegame():
                         resumeplayer.day==row[4]
                         return(resumeplayer.name,resumeplayer.damage,resumeplayer.defence,resumeplayer.hp,resumeplayer.day)
                     else:
+                        return(resumeplayer.name,resumeplayer.damage,resumeplayer.defence,resumeplayer.hp,resumeplayer.day)
                         print("Saved data found, resuming game")
                         break
     except:
@@ -467,5 +468,5 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
 
