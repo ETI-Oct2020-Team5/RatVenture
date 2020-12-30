@@ -15,9 +15,7 @@ def test_rest_function():
    value = rest()
    assert value == (20, player.day-1, player.day)
 
-<<<<<<< HEAD
-   
-=======
+
 def test_save_function():
        """This is to test if player data can be saved into excel file"""
        value = savegame()
@@ -48,4 +46,4 @@ def test_move_function_RIGHT():
    """This is to test if the move "right" function is working. When the player feeds input "D", the H (Hero) indicator should move accordingly and the map will be updated"""
    value = moveRight()
    assert value == (player.positionX, player.positionX-1)
->>>>>>> 8fe8a36d0c151876121f0aaa949ff54cee5856b2
+
