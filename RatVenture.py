@@ -94,38 +94,6 @@ class Rat(object):
     
 rat = Rat()
 
-
-##### SAVE GAME FUNCTION ##### 
-def save():
-    outfile = open('player.txt','wb')
-    pickle.dump(player, outfile)
-    outfile.close()
-
-    print('Game Saved.')
-
-    #townMenu(1)
-
-##### LOAD GAME FUNCTION #####
-def resume():
-    global player
-    fileObject = open('player.txt','rb') 
-    overwrite = pickle.load(fileObject)
-    fileObject.close()   
-
-    player.name = overwrite['Name'] 
-    player.positionY = overwrite['positionY']   
-    player.positionX = overwrite['positionX']
-    player.damage = overwrite['Damage']
-    player.minDamage = overwrite['minDamage']
-    player.maxDamage = overwrite['maxDamage']
-    player.defence = overwrite['Defence']
-    player.day = overwrite['Day']
-    player.location = overwrite['location']
-    player.hp = overwrite['HP']
-    player.locationTag = overwrite['locationtag']
-
-    townMenu(1) 
-
 #-------Save Game-------#
 def savegame():
     savedplayer.name = player.name #Assign savedplayer.name with player.name for saving feature
@@ -245,16 +213,12 @@ def exitgame():
     
     sys.exit()
 
-
 ##### REST FUNCTION #####
 def rest():
     player.hp = 20
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-
-    #townMenu(1)
-
 
 
     return player.hp, currentday, player.day
@@ -333,6 +297,15 @@ def moveRight(): # D
         print()
         updateLocation() # Updates the hero location in the map
     return (player.positionX, player.positionX-1)
+
+##### MOVE FUNCTION #####
+def move():
+        display_map() # Call function to print map 
+        print('W = up; A = left; S = down; D = right')
+        print()  
+        player.day += 1 # Increments Day by 1
+
+        movementInput() 
 
 #-------- Map --------#
 
@@ -521,7 +494,8 @@ def townMenu_selection():
         display_map()
         townMenu(1)        
     elif TMoption == 3:
-        print("do smth")
+        move()
+        townMenu(1)
     elif TMoption == 4:
         rest()
         townMenu(1)
@@ -584,4 +558,5 @@ def start_game():
     return
 
 # # Program starts here
-#mainMenu()
+mainMenu()
+
