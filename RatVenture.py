@@ -198,11 +198,6 @@ def resumegame():
             writer.writerow(dataList)
             csvfile.close() #Close csv
         print("No saved data file found, creating one now") #Print alternate success message
-        
-                        
-    
-    
-
 
 
 #-------Exit game feature-------#
