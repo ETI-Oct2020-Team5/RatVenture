@@ -223,6 +223,81 @@ def rest():
 
     return player.hp, currentday, player.day
 
+##### MOVE FUNCTION #####
+
+# Update Player's Location 
+def updateLocation():
+    for y in range(8): 
+        for x in range(8):
+            if player.positionX == x and player.positionY == y:
+                if world_map[y][x] == 'T':
+                    player.locationTag == 'T'
+                elif world_map[y][x] == 'K':
+                    player.locationTag == 'K'
+                elif world_map[y][x] == ' ':
+                    player.locationTag == ' '
+
+# Movement input 
+def movementInput():
+    movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
+    movementInput = movementInput.upper()
+    if movementInput == 'W':
+        moveUp()
+    if movementInput == 'A':
+        moveLeft()
+    if movementInput == 'S':
+        moveDown()
+    if movementInput == 'D':
+        moveRight()
+
+# To move up 
+def moveUp(): # W
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionY -= 1 
+    if player.positionY < 0 and player.positionX in numList: # This prevents the hero from moving out of the map 
+        player.positionY += 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionY, player.positionY+1)
+
+# To move down
+def moveDown(): # S
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionY += 1
+    if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
+        player.positionY += 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionY, player.positionY-1)
+
+# To move left 
+def moveLeft(): # A
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionX -= 1
+    if player.positionX < 0 and player.positionY in numList: # This prevents the hero from moving out of the map 
+        player.positionY += 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionX, player.positionX+1)
+
+# To move right
+def moveRight(): # D
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionX += 1
+    if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
+        player.positionY += 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionX, player.positionX-1)
+
 #-------- Map --------#
 
 # def map():
