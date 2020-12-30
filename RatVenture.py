@@ -60,7 +60,7 @@ def save():
 
     print('Game Saved.')
 
-    townMenu(1)
+    #townMenu(1)
 
 ##### LOAD GAME FUNCTION #####
 def resume():
@@ -70,7 +70,7 @@ def resume():
     fileObject.close()   
 
     player.name = overwrite['Name'] 
-    player.positionY = overwrite['positionY']
+    player.positionY = overwrite['positionY']   
     player.positionX = overwrite['positionX']
     player.damage = overwrite['Damage']
     player.minDamage = overwrite['minDamage']
@@ -89,7 +89,7 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-    townMenu(1)
+    #townMenu(1)
     return player.hp, currentday, player.day
 
 #-------- Map --------#
@@ -245,7 +245,7 @@ def townMenu(MMoption):
 def townMenu_selection():
     TMoption = townmenuuseroption()
     # action = input("Enter your option: ")
-    acceptable_actions = ['1', '2', '3', '4', '5', '6']
+    acceptable_actions = [1, 2, 3, 4, 5, 6]
     while TMoption not in acceptable_actions:
         print("Unknown option, please select 1-6.")
     #   action = input("Enter your option: ")
@@ -317,4 +317,4 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
