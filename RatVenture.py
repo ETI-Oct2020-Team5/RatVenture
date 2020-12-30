@@ -94,7 +94,7 @@ class Rat(object):
     
 rat = Rat()
 
-<<<<<<< HEAD
+
 ##### SAVE GAME FUNCTION ##### 
 def save():
     outfile = open('player.txt','wb')
@@ -125,7 +125,7 @@ def resume():
     player.locationTag = overwrite['locationtag']
 
     townMenu(1) 
-=======
+
 #-------Save Game-------#
 def savegame():
     savedplayer.name = player.name #Assign savedplayer.name with player.name for saving feature
@@ -244,7 +244,7 @@ def exitgame():
             csvfile.close() #Close csv
     
     sys.exit()
->>>>>>> 8fe8a36d0c151876121f0aaa949ff54cee5856b2
+
 
 ##### REST FUNCTION #####
 def rest():
@@ -252,12 +252,11 @@ def rest():
     currentday = player.day
     player.day = player.day + 1
     print('You are Fully Healed')
-<<<<<<< HEAD
+
     #townMenu(1)
-=======
 
 
->>>>>>> 8fe8a36d0c151876121f0aaa949ff54cee5856b2
+
     return player.hp, currentday, player.day
 
 ##### MOVE FUNCTION #####
@@ -586,7 +585,3 @@ def start_game():
 
 # # Program starts here
 #mainMenu()
-<<<<<<< HEAD
-=======
-
->>>>>>> 8fe8a36d0c151876121f0aaa949ff54cee5856b2
