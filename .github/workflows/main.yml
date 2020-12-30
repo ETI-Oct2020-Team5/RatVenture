@@ -2,12 +2,15 @@
 
 name: Python CI/CD
 
+
+#Workflow trigger
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]   
   
+#Workflow build function
 jobs:
   build:
 
@@ -23,7 +26,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install pygame flake8 pytest pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    
+
+#Testing codes with pytest    
     - name: Test with pytest
       id: TestWithPytest
       run: |
@@ -32,12 +36,13 @@ jobs:
       name: Create Issues
       uses: nashmaniac/create-issue-action@v1.1
       with:
-          title: Build Failed
+          title: Build Failed #Build Fail action
           token: ${{secrets.GITHUB_TOKEN}}
           assignees: ${{github.actor}}
           labels: worflow-failed
           body: Workflow failed for commit ${{github.sha}} @ ${{github.ref}}
-    
+
+#Unit test results (create report.xml)
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1.5
       if: always()
@@ -45,6 +50,7 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         files: report.xml
 
+#Docker: (Creates new issue to repository)
   assign:
     runs-on: ubuntu-latest
     needs: [build]
