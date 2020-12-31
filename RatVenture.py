@@ -241,14 +241,20 @@ def updateLocation():
 def movementInput():
     movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
     movementInput = movementInput.upper()
-    if movementInput == 'W':
-        moveUp()
-    if movementInput == 'A':
-        moveLeft()
-    if movementInput == 'S':
-        moveDown()
-    if movementInput == 'D':
-        moveRight()
+    acceptable_move_actions = ['W','A','S','D']
+    while movementInput not in acceptable_move_actions:
+        print('You have entered an invalid option. Enter "W", "A", "S" or "D" to move.')
+        movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
+        movementInput = movementInput.upper()
+    else:
+        if movementInput == 'W':
+            moveUp()
+        if movementInput == 'A':
+            moveLeft()
+        if movementInput == 'S':
+            moveDown()
+        if movementInput == 'D':
+            moveRight()
 
 # To move up 
 def moveUp(): # W
@@ -495,6 +501,7 @@ def townMenu_selection():
         townMenu(1)        
     elif TMoption == 3:
         move()
+        display_map()
         townMenu(1)
     elif TMoption == 4:
         rest()
@@ -558,5 +565,5 @@ def start_game():
     return
 
 # # Program starts here
-mainMenu()
+#mainMenu()
 
