@@ -228,26 +228,29 @@ def newgame():
     player.locationTag = 'H'
     dataList=["The Hero", "2-4", "1", "20","1","No"] #Default player value
     headerList=['Name','Damage','Defence','HP','Day','Saved'] #Default header for csv
-    with open("saveddata.csv",'r') as infile:
-        reader = csv.reader(infile, delimiter=",")
-        header = next(reader)
-        for row in reader:
-    
-            if row[0] == "The Hero":
-                with open('saveddata.csv','w',newline="") as csvfile: #Opens / creates (if file does not exist or has been deleted) saveddata.csv.
-                    writer=csv.writer(csvfile)
-                    writer.writerow(headerList) #Write headerList into csv
-                    writer.writerow(dataList) #Write dataList into csv
-                    csvfile.close() #Close csv
-                print("New game started")
-            else:
-                with open('saveddata.csv','w',newline="") as csvfile: #Create csv called saveddata.csv and writes dataList and headerList
-                    writer=csv.writer(csvfile)
-                    writer.writerow(headerList)
-                    writer.writerow(dataList)
-                    csvfile.close() #Close csv
-                print("No saved data file found, creating one now") #Print alternate success message
-    
+    try:
+        with open("saveddata.csv",'r') as infile:
+            reader = csv.reader(infile, delimiter=",")
+            header = next(reader)
+            for row in reader:
+        
+                if row[0] == "The Hero":
+                    with open('saveddata.csv','w',newline="") as csvfile: #Opens / creates (if file does not exist or has been deleted) saveddata.csv.
+                        writer=csv.writer(csvfile)
+                        writer.writerow(headerList) #Write headerList into csv
+                        writer.writerow(dataList) #Write dataList into csv
+                        csvfile.close() #Close csv
+                    print("New game started")
+                else:
+                    break
+    except:
+        with open('saveddata.csv','w',newline="") as csvfile: #Create csv called saveddata.csv and writes dataList and headerList
+            writer=csv.writer(csvfile)
+            writer.writerow(headerList)
+            writer.writerow(dataList)
+            csvfile.close() #Close csv
+        print("No saved data file found, creating one now") #Print alternate success message
+
     
     
 
@@ -614,5 +617,5 @@ def start_game():
 
 # Program starts here
 
-# mainMenu()
+mainMenu()
 
