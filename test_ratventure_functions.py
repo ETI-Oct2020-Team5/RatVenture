@@ -20,8 +20,28 @@ def test_save_function():
        value = savegame()
        assert (savedplayer.name == player.name, savedplayer.damage == player.damage, savedplayer.defence == player.defence, savedplayer.hp == player.hp, savedplayer.day == player.day)
 
-
 def test_resume_function():
       """This is to test if the resumegame function changed the resumeplayer player class attributes to the values of the savedplayer player class"""
       value = resumegame()
       assert (resumeplayer.name == savedplayer.name, resumeplayer.damage == savedplayer.damage, resumeplayer.defence==savedplayer.defence, resumeplayer.hp==savedplayer.hp, resumeplayer.day==savedplayer.day)
+
+def test_move_function_UP():
+   """This is to test if the move "up" function is working. When the player feeds input "W", the H (Hero) indicator should move accordingly and the map will be updated"""
+   value = moveUp()
+   assert value == (player.positionY, player.positionY+1)
+
+def test_move_function_DOWN():
+   """This is to test if the move "down" function is working. When the player feeds input "S", the H (Hero) indicator should move accordingly and the map will be updated"""
+   value = moveDown()
+   assert value == (player.positionY, player.positionY-1)
+
+def test_move_function_LEFT():
+   """This is to test if the move "left" function is working. When the player feeds input "A", the H (Hero) indicator should move accordingly and the map will be updated"""
+   value = moveLeft()
+   assert value == (player.positionX, player.positionX+1)
+
+def test_move_function_RIGHT():
+   """This is to test if the move "right" function is working. When the player feeds input "D", the H (Hero) indicator should move accordingly and the map will be updated"""
+   value = moveRight()
+   assert value == (player.positionX, player.positionX-1)
+

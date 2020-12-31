@@ -67,95 +67,95 @@ def viewChar(TM_Option):
 #-------- Move --------#
 
 # Update Player's Location 
-# def updateLocation():
-#     for y in range(8):
-#         for x in range(8):
-#             if player.positionX == x and player.positionY == y:
-#                 if world_map[y][x] == 'T':
-#                     player.locationTag == 'T'
-#                 elif world_map[y][x] == 'K':
-#                     player.locationTag == 'K'
-#                 elif world_map[y][x] == ' ':
-#                     player.locationTag == ' '
+def updateLocation():
+    for y in range(8):
+        for x in range(8):
+            if player.positionX == x and player.positionY == y:
+                if world_map[y][x] == 'T':
+                    player.locationTag == 'T'
+                elif world_map[y][x] == 'K':
+                    player.locationTag == 'K'
+                elif world_map[y][x] == ' ':
+                    player.locationTag == ' '
 
 # Move Function
-# def move(TM_Option):
-#     if TM_Option == '3':
-#         map('2') # Call function to print map 
-#         print('W = up; A = left; S = down; D = right')
-#         print()
-#         movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
-#         movementInput = movementInput.upper()  
-#         player.day += 1 # Increments Day by 1
+def move(TM_Option):
+    if TM_Option == '3':
+        map('2') # Call function to print map 
+        print('W = up; A = left; S = down; D = right')
+        print()
+        movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
+        movementInput = movementInput.upper()  
+        player.day += 1 # Increments Day by 1
 
-#         numList = [0,1,2,3,4,5,6,7]
-#         if movementInput == 'W':
-#             player.positionY -= 1
-#             if player.positionY < 0 and player.positionX in numList:
-#                 player.positionY += 1
-#                 player.day -= 1
-#                 print('You are not allowed to move out of the map')
-#                 print()
-#                 updateLocation()
+        numList = [0,1,2,3,4,5,6,7]
+        if movementInput == 'W':
+            player.positionY -= 1
+            if player.positionY < 0 and player.positionX in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
 
-#         if movementInput == 'A':
-#             player.positionX += 1
-#             if player.positionX < 0 and player.positionY in numList:
-#                 player.positionY += 1
-#                 player.day -= 1
-#                 print('You are not allowed to move out of the map')
-#                 print()
-#                 updateLocation()
+        if movementInput == 'A':
+            player.positionX += 1
+            if player.positionX < 0 and player.positionY in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
 
-#         if movementInput == 'S':
-#             player.positionY += 1
-#             if player.positionY > 7 and player.positionX in numList:
-#                 player.positionY += 1
-#                 player.day -= 1
-#                 print('You are not allowed to move out of the map')
-#                 print()
-#                 updateLocation()
+        if movementInput == 'S':
+            player.positionY += 1
+            if player.positionY > 7 and player.positionX in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
 
-#         if movementInput == 'D':
-#             player.positionX += 1
-#             if player.positionY > 7 and player.positionX in numList:
-#                 player.positionY += 1
-#                 player.day -= 1
-#                 print('You are not allowed to move out of the map')
-#                 print()
-#                 updateLocation()
+        if movementInput == 'D':
+            player.positionX += 1
+            if player.positionY > 7 and player.positionX in numList:
+                player.positionY += 1
+                player.day -= 1
+                print('You are not allowed to move out of the map')
+                print()
+                updateLocation()
 
-#     townMenu()
+    townMenu()
 
 #-------- View Map --------#
 # Map Function 
-# def map(TM_Option):
-#     if TM_Option == '2':
-#         row = ''
-#         for y in range(8):
-#             print('+---+---+---+---+---+---+---+---+')
-#             for x in range(8):
-#                 if player.positionX == x and player.positionY == y:
-#                     if world_map[y][x] == ' ':
-#                         row = row + '| H' + ' '
-#                     else: 
-#                         row = row + '|H/' + str(world_map[y][x]) + ''
+def map(TM_Option):
+    if TM_Option == '2':
+        row = ''
+        for y in range(8):
+            print('+---+---+---+---+---+---+---+---+')
+            for x in range(8):
+                if player.positionX == x and player.positionY == y:
+                    if world_map[y][x] == ' ':
+                        row = row + '| H' + ' '
+                    else: 
+                        row = row + '|H/' + str(world_map[y][x]) + ''
 
-#                     if world_map[y][x] == 'T':
-#                         player.locationTag = 'T'
+                    if world_map[y][x] == 'T':
+                        player.locationTag = 'T'
                     
-#                     elif world_map[y][x] == 'K':
-#                         player.locationTag = 'K'
+                    elif world_map[y][x] == 'K':
+                        player.locationTag = 'K'
 
-#                     elif world_map[y][x] == ' ':
-#                         player.locationTag = ' '
-#                 else: 
-#                     row = row + '| ' + str(world_map[x][y]) + ' '
-#             print(row + '|')
-#             row = ''
+                    elif world_map[y][x] == ' ':
+                        player.locationTag = ' '
+                else: 
+                    row = row + '| ' + str(world_map[x][y]) + ' '
+            print(row + '|')
+            row = ''
         
-#         print('+---+---+---+---+---+---+---+---+')
-#         print()
+        print('+---+---+---+---+---+---+---+---+')
+        print()
 
 #-------- Rest --------#
 # Function to allow player to rest
@@ -244,7 +244,6 @@ def mainMenu_selection(MM_Option):
 #-------- Town Menu --------#
 
 def townMenu():
-    ### add incremental day ####
     print("\nDay {}: You are in town.".format(player.day))
     print("[1] View Character")
     print("[2] View Map")
@@ -252,7 +251,7 @@ def townMenu():
     print("[4] Rest")
     print("[5] Save Game")
     print("[6] Exit Game")
-
+    
     TM_Option = input("Enter your option: ")
 
     townMenu_selection(TM_Option)
@@ -266,11 +265,11 @@ def townMenu_selection(TM_Option):
     if TM_Option == '1':
         viewChar(TM_Option)
     elif TM_Option == '2': # Function to display map
-        # map(TM_Option)  
-        # townMenu()  
+        map(TM_Option)  
+        townMenu()  
         print()
     elif TM_Option == '3': # Function to move
-        #move(TM_Option)
+        move(TM_Option)
         print()
     elif TM_Option == '4':  # Function to rest
         rest(TM_Option)
@@ -283,14 +282,3 @@ def townMenu_selection(TM_Option):
 
 # Program starts here
 mainMenu()
-  
-        
-
-
-    
-
-  
-        
-
-
-    

@@ -94,6 +94,7 @@ class Rat(object):
     
 rat = Rat()
 
+
 #-------Save Game-------#
 def savegame():
     savedplayer.name = player.name #Assign savedplayer.name with player.name for saving feature
@@ -198,11 +199,6 @@ def resumegame():
             writer.writerow(dataList)
             csvfile.close() #Close csv
         print("No saved data file found, creating one now") #Print alternate success message
-        
-                        
-    
-    
-
 
 
 #-------Exit game feature-------#
@@ -218,6 +214,43 @@ def exitgame():
     
     sys.exit()
 
+def newgame():
+    player.name = 'The Hero'
+    player.damage = '2-4'
+    player.minDamage = 2
+    player.maxDamage = 4
+    player.defence = 1
+    player.hp = 20
+    player.day = 1
+    player.positionX = 0
+    player.positionY = 0
+    player.location = 'You are in a Town'
+    player.locationTag = 'H'
+    dataList=["The Hero", "2-4", "1", "20","1","No"] #Default player value
+    headerList=['Name','Damage','Defence','HP','Day','Saved'] #Default header for csv
+    with open("saveddata.csv",'r') as infile:
+        reader = csv.reader(infile, delimiter=",")
+        header = next(reader)
+        for row in reader:
+    
+            if row[0] == "The Hero":
+                with open('saveddata.csv','w',newline="") as csvfile: #Opens / creates (if file does not exist or has been deleted) saveddata.csv.
+                    writer=csv.writer(csvfile)
+                    writer.writerow(headerList) #Write headerList into csv
+                    writer.writerow(dataList) #Write dataList into csv
+                    csvfile.close() #Close csv
+                print("New game started")
+            else:
+                with open('saveddata.csv','w',newline="") as csvfile: #Create csv called saveddata.csv and writes dataList and headerList
+                    writer=csv.writer(csvfile)
+                    writer.writerow(headerList)
+                    writer.writerow(dataList)
+                    csvfile.close() #Close csv
+                print("No saved data file found, creating one now") #Print alternate success message
+    
+    
+    
+
 ##### REST FUNCTION #####
 def rest():
     player.hp = 20
@@ -227,6 +260,96 @@ def rest():
 
 
     return player.hp, currentday, player.day
+
+##### MOVE FUNCTION #####
+
+# Update Player's Location 
+def updateLocation():
+    for y in range(8): 
+        for x in range(8):
+            if player.positionX == x and player.positionY == y:
+                if world_map[y][x] == 'T':
+                    player.locationTag == 'T'
+                elif world_map[y][x] == 'K':
+                    player.locationTag == 'K'
+                elif world_map[y][x] == ' ':
+                    player.locationTag == ' '
+
+# Movement input 
+def movementInput():
+    movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
+    movementInput = movementInput.upper()
+    acceptable_move_actions = ['W','A','S','D']
+    while movementInput not in acceptable_move_actions:
+        print('You have entered an invalid option. Enter "W", "A", "S" or "D" to move.')
+        movementInput = input('Your Move: ') # Prompt user to input "W, A, S, D" to move 
+        movementInput = movementInput.upper()
+    else:
+        if movementInput == 'W':
+            moveUp()
+        if movementInput == 'A':
+            moveLeft()
+        if movementInput == 'S':
+            moveDown()
+        if movementInput == 'D':
+            moveRight()
+
+# To move up 
+def moveUp(): # W
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionY -= 1 
+    if player.positionY < 0 and player.positionX in numList: # This prevents the hero from moving out of the map 
+        player.positionY += 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionY, player.positionY+1)
+
+# To move down
+def moveDown(): # S
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionY += 1
+    if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
+        player.positionY -= 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionY, player.positionY-1)
+
+# To move left 
+def moveLeft(): # A
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionX -= 1
+    if player.positionX < 0 and player.positionY in numList: # This prevents the hero from moving out of the map 
+        player.positionX += 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionX, player.positionX+1)
+
+# To move right
+def moveRight(): # D
+    numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
+    player.positionX += 1
+    if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
+        player.positionX -= 1
+        player.day -= 1
+        print('You are not allowed to move out of the map')
+        print()
+        updateLocation() # Updates the hero location in the map
+    return (player.positionX, player.positionX-1)
+
+##### MOVE FUNCTION #####
+def move():
+        display_map() # Call function to print map 
+        print('W = up; A = left; S = down; D = right')
+        print()  
+        player.day += 1 # Increments Day by 1
+
+        movementInput() 
 
 #-------- Map --------#
 
@@ -377,22 +500,26 @@ def display_map():
 
 #-------- Town Menu --------#
 
+def townMenudisplay():
+    print("\nDay {}: You are in town.".format(player.day))
+    print("[1] View Character")
+    print("[2] View Map")
+    print("[3] Move")
+    print("[4] Rest")
+    print("[5] Save Game")
+    print("[6] Exit Game")
+
 def townMenu(MMoption):
     ### add incremental day ####
     
     if MMoption == 1:
-        print("\nDay {}: You are in town.".format(player.day))
-        print("[1] View Character")
-        print("[2] View Map")
-        print("[3] Move")
-        print("[4] Rest")
-        print("[5] Save Game")
-        print("[6] Exit Game")
+        newgame()
+        townMenudisplay()
         # Display the town menu
     elif MMoption == 2:
         # Loads the game
         resumegame()
-        townMenu(1)
+        townMenudisplay()
     elif MMoption == 3: 
         # Exits the game
         exitgame()
@@ -410,18 +537,25 @@ def townMenu_selection():
         TMoption = townmenuuseroption()
     if TMoption == 1:
         herostats()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 2:
         display_map()
-        townMenu(1)        
+        townMenudisplay()
+        townMenu_selection()        
     elif TMoption == 3:
-        print("do smth")
+        move()
+        display_map()
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 4:
         rest()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 5:
         savegame()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 6:
         mainMenu()
         
@@ -477,6 +611,6 @@ def townMenu_selection1():
 def start_game():
     return
 
-# # Program starts here
-#mainMenu()
+# Program starts here
+mainMenu()
 
