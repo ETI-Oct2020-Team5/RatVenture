@@ -267,7 +267,7 @@ def moveDown(): # S
     numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
     player.positionY += 1
     if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
-        player.positionY += 1
+        player.positionY -= 1
         player.day -= 1
         print('You are not allowed to move out of the map')
         print()
@@ -279,7 +279,7 @@ def moveLeft(): # A
     numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
     player.positionX -= 1
     if player.positionX < 0 and player.positionY in numList: # This prevents the hero from moving out of the map 
-        player.positionY += 1
+        player.positionX += 1
         player.day -= 1
         print('You are not allowed to move out of the map')
         print()
@@ -291,7 +291,7 @@ def moveRight(): # D
     numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
     player.positionX += 1
     if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
-        player.positionY += 1
+        player.positionX -= 1
         player.day -= 1
         print('You are not allowed to move out of the map')
         print()
