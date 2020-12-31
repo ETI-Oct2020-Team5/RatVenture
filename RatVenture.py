@@ -558,5 +558,5 @@ def start_game():
     return
 
 # Program starts here
-mainMenu()
+# mainMenu()
 
