@@ -94,6 +94,7 @@ class Rat(object):
     
 rat = Rat()
 
+
 #-------Save Game-------#
 def savegame():
     savedplayer.name = player.name #Assign savedplayer.name with player.name for saving feature
@@ -212,6 +213,43 @@ def exitgame():
             csvfile.close() #Close csv
     
     sys.exit()
+
+def newgame():
+    player.name = 'The Hero'
+    player.damage = '2-4'
+    player.minDamage = 2
+    player.maxDamage = 4
+    player.defence = 1
+    player.hp = 20
+    player.day = 1
+    player.positionX = 0
+    player.positionY = 0
+    player.location = 'You are in a Town'
+    player.locationTag = 'H'
+    dataList=["The Hero", "2-4", "1", "20","1","No"] #Default player value
+    headerList=['Name','Damage','Defence','HP','Day','Saved'] #Default header for csv
+    with open("saveddata.csv",'r') as infile:
+        reader = csv.reader(infile, delimiter=",")
+        header = next(reader)
+        for row in reader:
+    
+            if row[0] == "The Hero":
+                with open('saveddata.csv','w',newline="") as csvfile: #Opens / creates (if file does not exist or has been deleted) saveddata.csv.
+                    writer=csv.writer(csvfile)
+                    writer.writerow(headerList) #Write headerList into csv
+                    writer.writerow(dataList) #Write dataList into csv
+                    csvfile.close() #Close csv
+                print("New game started")
+            else:
+                with open('saveddata.csv','w',newline="") as csvfile: #Create csv called saveddata.csv and writes dataList and headerList
+                    writer=csv.writer(csvfile)
+                    writer.writerow(headerList)
+                    writer.writerow(dataList)
+                    csvfile.close() #Close csv
+                print("No saved data file found, creating one now") #Print alternate success message
+    
+    
+    
 
 ##### REST FUNCTION #####
 def rest():
@@ -462,22 +500,26 @@ def display_map():
 
 #-------- Town Menu --------#
 
+def townMenudisplay():
+    print("\nDay {}: You are in town.".format(player.day))
+    print("[1] View Character")
+    print("[2] View Map")
+    print("[3] Move")
+    print("[4] Rest")
+    print("[5] Save Game")
+    print("[6] Exit Game")
+
 def townMenu(MMoption):
     ### add incremental day ####
     
     if MMoption == 1:
-        print("\nDay {}: You are in town.".format(player.day))
-        print("[1] View Character")
-        print("[2] View Map")
-        print("[3] Move")
-        print("[4] Rest")
-        print("[5] Save Game")
-        print("[6] Exit Game")
+        newgame()
+        townMenudisplay()
         # Display the town menu
     elif MMoption == 2:
         # Loads the game
         resumegame()
-        townMenu(1)
+        townMenudisplay()
     elif MMoption == 3: 
         # Exits the game
         exitgame()
@@ -495,20 +537,25 @@ def townMenu_selection():
         TMoption = townmenuuseroption()
     if TMoption == 1:
         herostats()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 2:
         display_map()
-        townMenu(1)        
+        townMenudisplay()
+        townMenu_selection()        
     elif TMoption == 3:
         move()
         display_map()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 4:
         rest()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 5:
         savegame()
-        townMenu(1)
+        townMenudisplay()
+        townMenu_selection()
     elif TMoption == 6:
         mainMenu()
         
@@ -568,5 +615,4 @@ def start_game():
 # Program starts here
 
 # mainMenu()
-
 
