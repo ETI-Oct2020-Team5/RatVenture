@@ -564,10 +564,9 @@ def townMenu_selection1():
 def start_game():
     return
 
+
 # Program starts here
-<<<<<<< HEAD
-#mainMenu()
-=======
+
 # mainMenu()
->>>>>>> cd8fcaaede8e51528cc093ada65177f6722c6f98
+
 
