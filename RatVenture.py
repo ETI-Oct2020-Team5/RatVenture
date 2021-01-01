@@ -564,6 +564,9 @@ def townMenu_selection1():
 def start_game():
     return
 
-# # Program starts here
-#mainMenu()
+
+# Program starts here
+
+# mainMenu()
+
 
