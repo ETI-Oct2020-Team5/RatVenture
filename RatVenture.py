@@ -543,14 +543,6 @@ def townMenu_selection():
         townMenudisplay()
         townMenu_selection()
     elif TMoption == 2:
-<<<<<<< HEAD
-        display_map() 
-        townMenu(1)        
-    elif TMoption == 3:
-        move()
-        display_map() # to display map after player has chosen to move
-        townMenu(1)
-=======
         display_map()
         townMenudisplay()
         townMenu_selection()        
@@ -559,7 +551,6 @@ def townMenu_selection():
         display_map()
         townMenudisplay()
         townMenu_selection()
->>>>>>> 7d4151ed8dd53834ab4a510dc1f30dd97f620197
     elif TMoption == 4:
         rest()
         townMenudisplay()
@@ -625,11 +616,7 @@ def start_game():
 
 
 # Program starts here
-<<<<<<< HEAD
-#mainMenu()
-=======
 
 #mainMenu()
 
 
->>>>>>> 7d4151ed8dd53834ab4a510dc1f30dd97f620197
