@@ -284,7 +284,7 @@ def moveDown(): # S
 def moveLeft(): # A
     numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
     player.positionX -= 1
-    if player.positionX < 0 and player.positionY in numList: # This prevents the hero from moving out of the map 
+    if player.positionX < 0 and player.positionX not in numList: # This prevents the hero from moving out of the map 
         player.positionX += 1
         player.day -= 1
         print('You are not allowed to move out of the map')
@@ -296,7 +296,7 @@ def moveLeft(): # A
 def moveRight(): # D
     numList = [0,1,2,3,4,5,6,7] # The map has 8 grids and this is to ensure the hero does not move out of map
     player.positionX += 1
-    if player.positionY > 7 and player.positionX in numList: # This prevents the hero from moving out of the map 
+    if player.positionX > 7 and player.positionX not in numList: # This prevents the hero from moving out of the map 
         player.positionX -= 1
         player.day -= 1
         print('You are not allowed to move out of the map')
@@ -497,11 +497,11 @@ def townMenu_selection():
         herostats()
         townMenu(1)
     elif TMoption == 2:
-        display_map()
+        display_map() 
         townMenu(1)        
     elif TMoption == 3:
         move()
-        display_map()
+        display_map() # to display map after player has chosen to move
         townMenu(1)
     elif TMoption == 4:
         rest()
@@ -565,9 +565,4 @@ def start_game():
     return
 
 # Program starts here
-<<<<<<< HEAD
 #mainMenu()
-=======
-# mainMenu()
->>>>>>> cd8fcaaede8e51528cc093ada65177f6722c6f98
-
