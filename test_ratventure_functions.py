@@ -15,12 +15,10 @@ def test_rest_function():
    value = rest()
    assert value == (20, player.day-1, player.day)
 
-
 def test_save_function():
        """This is to test if player data can be saved into excel file"""
        value = savegame()
        assert (savedplayer.name == player.name, savedplayer.damage == player.damage, savedplayer.defence == player.defence, savedplayer.hp == player.hp, savedplayer.day == player.day)
-       #assert value ==  savedplayer.name + "\nDamage: {}\nDefence: {}\nHP: {}\nDay: {}".format(savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
 
 def test_resume_function():
       """This is to test if the resumegame function changed the resumeplayer player class attributes to the values of the savedplayer player class"""
