@@ -1,0 +1,29 @@
+The testing process involves the whole team where each team does tests at different phases during the sprint.
+
+QA Team: 
+  - Writes test cases in worded form on an Excel Sheet.
+  - Unit Testing: done for testcases which cannot be tested with test scripts.
+  - System Testing: done each sprint to make sure functions completed during the sprint perform as intended.
+
+Dev Team: 
+  - Writes test scripts to fulfil test cases 
+  - Unit Testing: Use test scripts to test each function implemented individually during the sprint
+  
+PM:
+  - Integrations Testing: executes all test scripts in the python test file to test functions implemented, ensuring they function when merged with the whole system.
+  
+
+Testing Process:
+  1. Test cases created by QA Team at the start of each sprint (Excel format)
+  2. Test scripts written by Dev Team for each test case. 
+  3. Dev Team runs test script before coding is done to fulfil TDD
+  4. Dev Team codes functions to pass test unit test from test script.
+  5. Functions which cannot complete unit testing with test scripts are listed out to QA Team.
+  6. QA Team conducts manual unit testing based on test cases created on Excel.
+  7. Manual unit tests which fail will be listed by QA Team in the Excel file and Dev Team is tagged in the commit to begin coding to pass manual unit test.
+  8. Code is written by Dev Team to pass manual unit test from QA Team. (Step 5 - 8 repeated until functions completed for sprint)
+  9. QA Team conducts system tests, listing passing/failing tests in the Excel sheet for the sprint.
+  10. Dev Team commits and push codes to sprint branch for PM to conduct Integrations Testing.
+  11. PM merges sprint branch to main branch through pull requests, automatically executing python test scripts with YAML file.
+  12. Codes are changed directly in GitHub by PM to pass failed tests in the main branch code.
+  13. Altered codes which pass testcases from Python test file are commited again to main branch to check that functions pass. (step 12-13 repeated until all functions pass)
