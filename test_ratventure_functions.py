@@ -45,13 +45,5 @@ def test_move_function_RIGHT():
    value = moveRight()
    assert value == (player.positionX, player.positionX-1)
 
-def test_run_function():
-       """This is to test if the run function properly prints a success message, restore enemy HP to full and that the menu is shown"""
-       value = run()
-       assert rat.hp == 8, print("You run and hide.")
 
-def test_attack_function():
-       """This is to test if the attack function decreases the health of the opponent"""
-       value = attack()
-       assert 
 
