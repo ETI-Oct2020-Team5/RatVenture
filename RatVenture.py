@@ -372,10 +372,9 @@ def savegame():
                  
 #-------- Run feature --------#
 def run():
-    print() # New Line
-    print('You run and hide.')
-    rat.hp = 8 # Restore the Rat's HP to full when player runs away
-    openMenu() # To display the Open Menu 
+
+    return
+
 
 #------------------------ END OF NEW CODES  ------------------------# 
 
