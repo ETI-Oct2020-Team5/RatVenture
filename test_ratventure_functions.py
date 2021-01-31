@@ -45,5 +45,8 @@ def test_move_function_RIGHT():
    value = moveRight()
    assert value == (player.positionX, player.positionX-1)
 
-
+def test_attack_function():
+       """This is to test if the attack function decreases the health of the opponent"""
+       value = attack()
+       assert rat.hp < 8
 
