@@ -50,3 +50,8 @@ def test_run_function():
        value = run()
        assert rat.hp == 8, print("You run and hide.")
 
+def test_attack_function():
+       """This is to test if the attack function decreases the health of the opponent"""
+       value = attack()
+       assert 
+

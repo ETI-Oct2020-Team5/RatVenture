@@ -565,9 +565,4 @@ def start_game():
     return
 
 # Program starts here
-<<<<<<< HEAD
-
 #mainMenu()
-=======
-#mainMenu()
->>>>>>> 1f50de7ec78c4900bb05847a7431608f8496196b
