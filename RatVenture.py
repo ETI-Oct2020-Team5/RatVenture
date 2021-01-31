@@ -377,6 +377,41 @@ def run():
     rat.hp = 8 # Restore the Rat's HP to full when player runs away
     openMenu() # To display the Open Menu 
 
+#-------- Attack feature --------#
+def attack():
+    while rat.hp > 0: 
+
+        # Hero Damage Calculation 
+        playerOriginalDamage = random.randint(player.minDamage, player.maxDamage) # Randomizing Hero's damage (2-4)
+        playerFinalDamage = playerOriginalDamage - rat.defence # Hero's final damage = Hero's original damage after deducting Rat's defence
+        rat.hp = rat.hp - playerFinalDamage # Deducting Rat's HP from Hero's final damage 
+
+        # Rat Damage Calculation 
+        ratOriginalDamage = random.randint(rat.minDamage, rat.maxDamage) # Randomizing Rat's damage (1-3)
+        ratFinalDamage = ratOriginalDamage - player.defence # Rat's final damage = Hero's original damage after deducting Hero's defence
+        player.hp = player.hp - ratFinalDamage # Deducting Player's HP from Rat's final damage
+
+        print()
+        print('You deal {} damage to the Rat'.format(playerFinalDamage)) # Print Final Damage dealt from Hero to Rat 
+        print('Ouch! The Rat hit you for {} damage!'.format(ratFinalDamage)) # Print Final Damage dealt from Rat to Hero 
+        print('You have {} HP left.'.format(player.hp)) # Print Hero's HP after taking damage
+
+        print()
+
+        if player.hp < 1: 
+            print('You are dead')
+            sys.exit() # End program once Hero is dead
+        
+        if rat.hp < 1: 
+            print('The Rat is Dead. You are Victorious!') # Print victory message after killing the rat 
+            print()
+            rat.hp = 8 # New Rat's HP
+            openMenu()
+
+        break 
+
+    return rat.hp, playerFinalDamage
+
 
 #------------------------ END OF NEW CODES  ------------------------# 
 
@@ -523,7 +558,7 @@ def combatMenu():
     combatMenu_selection()
 
 def combatMenu_selection():
-
+    
     print()
     for y in range(8): 
         for x in range(8): # 'while loop' 
