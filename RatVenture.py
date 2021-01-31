@@ -377,6 +377,11 @@ def run():
     rat.hp = 8 # Restore the Rat's HP to full when player runs away
     openMenu() # To display the Open Menu 
 
+#-------- Attack feature --------#
+def attack ():
+
+    return
+
 
 #------------------------ END OF NEW CODES  ------------------------# 
 
@@ -522,10 +527,8 @@ def townMenu_selection():
 def combatMenu():
     combatMenu_selection()
 
-<<<<<<< HEAD
-=======
 def combatMenu_selection():
-
+    
     print()
     for y in range(8): 
         for x in range(8): # 'while loop' 
@@ -602,6 +605,5 @@ def openmenuuseroption():
 # def start_game():
 #     return
 
->>>>>>> a7ed5c9ddba4b970f375ce1a43b18671caae80c0
 # Program starts here
 #mainMenu()
