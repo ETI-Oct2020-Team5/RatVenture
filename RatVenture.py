@@ -84,6 +84,18 @@ class Rat(object):
     
 rat = Rat()
 
+class RatKing(object): 
+    def __init__(self):
+        self.name = 'Rat King'
+        self.damage = '8-12'
+        self.minDamage = 8  #changed attribute name
+        self.maxDamage = 12  #changed attribute name
+        self.defence = 5
+        self.hp = 25 
+        self.location = 'h8'
+    
+ratking = RatKing()
+
 #--------- Resume Game Feature ---------#
 def resumegame():
     #Attempt to read saveddata.csv file, if succeed, it will carry out the codes below
@@ -378,7 +390,7 @@ def run():
     openMenu() # To display the Open Menu 
 
 #-------- Attack feature --------#
-def attack():
+def attack ():
     while rat.hp > 0: 
 
         # Hero Damage Calculation 
