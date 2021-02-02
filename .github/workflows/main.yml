@@ -50,6 +50,16 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         files: report.xml
 
+#Discord: Webhoook customizations
+    - name: Discord notification
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        DISCORD_USERNAME: RatVenture
+        DISCORD_AVATAR: https://thumbs.worthpoint.com/zoom/images1/1/0313/06/disney-store-plush-remy-rat-chef-hat_1_03ac91806d5eebddde155b1b811aa048.jpg
+      uses: Ilshidur/action-discord@master
+      with:
+        args: 'Hello Sexy'
+
 #Docker: (Creates new issue to repository)
   assign:
     runs-on: ubuntu-latest
