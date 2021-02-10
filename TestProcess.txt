@@ -28,3 +28,12 @@ Testing Process:
   11. PM merges sprint branch to main branch through pull requests, automatically executing python test scripts with YAML file.
   12. Codes are changed directly in GitHub by PM to pass failed tests in the main branch code.
   13. Altered codes which pass testcases from Python test file are commited again to main branch to check that functions pass. (step 12-13 repeated until all functions pass)
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Project Updates:
+Receivable via 
+- Email: when a team member is tagged with an issue created, updates on automated test results and commits.
+- Telegram: All project update notifications
+- Discord: All project update notifications
