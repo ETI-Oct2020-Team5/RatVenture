@@ -35,8 +35,8 @@ jobs:
         echo $RELEASE_VERSION
         echo ${{ env.RELEASE_VERSION }}
         
-    - name: Create Download Directory
-      run: mkdir downloads
+    #- name: Create Download Directory
+     # run: mkdir downloads
       
     - name: Create docs
       run: |
