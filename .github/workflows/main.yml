@@ -69,6 +69,4 @@ jobs:
       uses: getsentry/action-release@v1.1.5
       env: 
         SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-      with:
-        # Identifier that uniquely identifies the releases. Omit to auto-generate one.
-        version: v*
+
