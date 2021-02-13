@@ -63,3 +63,10 @@ jobs:
         GITHUB_PROJECT_URL: https://github.com/ETI-Oct2020-Team5/RatVenture/projects/1
         GITHUB_PROJECT_COLUMN_NAME: To do
 
+    - name: Sentry Release
+      # You may pin to the exact commit or the version.
+      # uses: getsentry/action-release@641a80f3e05619b174bcacbfa3b69dff382d2a33
+      uses: getsentry/action-release@v1.1.5
+      with:
+        # Identifier that uniquely identifies the releases. Omit to auto-generate one.
+        version: v*
