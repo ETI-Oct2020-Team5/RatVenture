@@ -1,1 +1,0 @@
-A folder containing documents
