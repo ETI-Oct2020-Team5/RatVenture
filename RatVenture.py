@@ -366,8 +366,6 @@ def savegame():
             print("\nGame saved. Character stats: \n" + savedstats)
             #Return values for pytest checks
             return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
-
-#------------------------ START OF NEW CODES  ------------------------# 
        
 #-------- Run feature --------#
 def run():
@@ -413,7 +411,6 @@ def attack():
     return rat.hp, playerFinalDamage
 
 
-#------------------------ END OF NEW CODES  ------------------------# 
 
 ##### GAME INTERACTIVITY #####
 
@@ -636,4 +633,4 @@ def openmenuuseroption():
 #     return
 
 # Program starts here
-#mainMenu()
+mainMenu()
