@@ -685,4 +685,4 @@ def openmenuuseroption():
 #     return
 
 # Program starts here
-mainMenu()
+#mainMenu()
