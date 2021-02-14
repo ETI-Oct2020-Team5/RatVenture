@@ -174,6 +174,7 @@ world_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', 'T', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']]
 
+
 def display_map():
     row = ''
     for y in range(8):
@@ -189,6 +190,7 @@ def display_map():
                     player.locationTag = 'T'
                 
                 elif world_map[y][x] == 'K':
+                    row = row + '| H' + ' '
                     player.locationTag = 'K'
 
                 elif world_map[y][x] == ' ':
@@ -411,8 +413,6 @@ def savegame():
             print("\nGame saved. Character stats: \n" + savedstats)
             #Return values for pytest checks
             return (savedplayer.name, savedplayer.damage, savedplayer.defence, savedplayer.hp, savedplayer.day)
-
-#------------------------ START OF NEW CODES  ------------------------# 
        
 #-------- Run feature --------#
 def run():
@@ -458,7 +458,6 @@ def attack ():
     return rat.hp, playerFinalDamage
 
 
-#------------------------ END OF NEW CODES  ------------------------# 
 
 ##### GAME INTERACTIVITY #####
 
@@ -665,7 +664,7 @@ def openMenu_selection():
         modifyLocation()
         print() # New Line
     if OMoption == 4: 
-        exitgame()
+        mainMenu()
 
 def openmenuuseroption():
     # Get user input in Town Menu and validate
