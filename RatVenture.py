@@ -625,7 +625,7 @@ def combatMenu_selection():
                 combatmenuuseroption()
 
             else: 
-                townMenu(1)
+                menu()
 
 def combatmenuuseroption():
     action = int(input('Enter choice: ')) # to prompt for user input
