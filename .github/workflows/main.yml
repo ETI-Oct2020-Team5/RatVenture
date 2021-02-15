@@ -64,13 +64,15 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         GITHUB_PROJECT_URL: https://github.com/ETI-Oct2020-Team5/RatVenture/projects/1
         GITHUB_PROJECT_COLUMN_NAME: To do
-
-    #- name: Sentry Release
-      # You may pin to the exact commit or the version.
-      # uses: getsentry/action-release@641a80f3e05619b174bcacbfa3b69dff382d2a33
-      #uses: getsentry/action-release@v1.1.5
-      #env: 
-        #SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-        #SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-        #SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+    
+    #Sentry monitoring
+    #- uses: actions/checkout@v2
+    - name: Create Sentry release
+      uses: getsentry/action-release@v1
+      env:
+        SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+        SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+        SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+      with:
+        environment: production
 
