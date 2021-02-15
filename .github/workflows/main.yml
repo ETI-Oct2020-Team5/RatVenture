@@ -26,8 +26,7 @@ jobs:
         python -m pip install --upgrade pip #installs pygame dependencies
         pip install pygame flake8 pytest pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-#        pip install --upgrade sentry-sdk
+        pip install --upgrade sentry-sdk
 
 #Testing codes with pytest    
     - name: Test with pytest
