@@ -9,11 +9,11 @@ import pickle
 import csv
 from random import randint
 import sentry_sdk
-sentry_sdk.init(
-    "https://8c53fe586b0545fc9bae972de2674b07@o523576.ingest.sentry.io/5635762",
-    traces_sample_rate=1.0
+#sentry_sdk.init(
+   # "https://8c53fe586b0545fc9bae972de2674b07@o523576.ingest.sentry.io/5635762",
+   # traces_sample_rate=1.0
     #division_by_zero = 1 / 0
-)
+#)
 
 ##### CLASSES #####
 
